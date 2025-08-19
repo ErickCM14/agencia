@@ -6,13 +6,25 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <h2>Registro</h2>
-  <form id="registerForm">
-    <input type="text" id="name" placeholder="Nombre" required>
-    <input type="email" id="email" placeholder="Email" required>
-    <input type="password" id="password" placeholder="Contraseña" required>
-    <button type="submit">Registrar</button>
-  </form>
+  <header class="navbar">
+    <div class="logo">Agencia</div>
+    <nav>
+      <a href="index.html">Inicio</a>
+      <a href="register.html">Registro</a>
+      <a href="login.html">Iniciar Sesión</a>
+      <a href="flights.html">Vuelos</a>
+      <a href="reservations.html">Mis Reservas</a>
+    </nav>
+  </header>
+  <div class="container">
+    <h2>Registro</h2>
+    <form id="registerForm">
+      <input type="text" id="name" placeholder="Nombre" required>
+      <input type="email" id="email" placeholder="Email" required>
+      <input type="password" id="password" placeholder="Contraseña" required>
+      <button type="submit">Registrar</button>
+    </form>
+  </div>
   <script src="js/auth.js"></script>
 </body>
 </html>
