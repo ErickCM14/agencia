@@ -3,11 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <title>Mis Reservas</title>
+  <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="styles.css">
 </head>
-<body>
-  <h2>Mis Reservas</h2>
-  <ul id="reservationsList"></ul>
+<body class="bg-gray-50 font-sans text-gray-800">
+  <header class="bg-gradient-to-r from-purple-600 to-pink-500 p-4 flex items-center justify-between shadow-md">
+    <div class="text-white text-xl font-bold">Agencia</div>
+    <nav class="space-x-6">
+      <a href="index.html" class="text-white hover:underline">Inicio</a>
+      <a href="register.html" class="text-white hover:underline">Registro</a>
+      <a href="login.html" class="text-white hover:underline">Iniciar Sesión</a>
+      <a href="flights.html" class="text-white hover:underline">Vuelos</a>
+      <a href="reservations.html" class="text-white hover:underline">Mis Reservas</a>
+      <a href="create-flight.html" class="text-white hover:underline">Crear Vuelo</a>
+    </nav>
+  </header>
+  <div class="max-w-2xl mx-auto mt-10 p-4 fade-in">
+    <h2 class="text-2xl font-bold mb-6 text-center">Mis Reservas</h2>
+    <ul id="reservationsList" class="space-y-4 mb-10"></ul>
+    <h2 class="text-2xl font-bold mb-6 text-center">Todas las Reservas</h2>
+    <ul id="allReservationsList" class="space-y-4"></ul>
+  </div>
   <script src="js/reservations.js"></script>
 </body>
 </html>

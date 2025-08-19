@@ -10,11 +10,20 @@ exports.getFlights = async (req, res, next) => {
   }
 };
 
+exports.getUserFlights = async (req, res, next) => {
+  try {
+    const flights = await Flight.find({ user: req.user.id });
+    res.json(flights);
+  } catch (err) {
+    next(err);
+  }
+};
+
 exports.createFlight = async (req, res, next) => {
   try {
     const errors = validationResult(req);
     if (!errors.isEmpty()) return res.status(400).json({ errors: errors.array() });
-    const flight = await Flight.create(req.body);
+    const flight = await Flight.create({ ...req.body, user: req.user.id });
     res.status(201).json(flight);
   } catch (err) {
     next(err);

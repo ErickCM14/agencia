@@ -1,6 +1,6 @@
 const express = require('express');
 const { body } = require('express-validator');
-const { getFlights, createFlight } = require('../controllers/flightController');
+const { getFlights, createFlight, getUserFlights } = require('../controllers/flightController');
 const auth = require('../middleware/auth');
 const router = express.Router();
 
@@ -11,6 +11,14 @@ const router = express.Router();
  *     summary: List flights
  */
 router.get('/', getFlights);
+
+/**
+ * @swagger
+ * /api/flights/mine:
+ *   get:
+ *     summary: List flights for user
+ */
+router.get('/mine', auth, getUserFlights);
 
 /**
  * @swagger
