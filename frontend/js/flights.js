@@ -41,7 +41,11 @@ async function reserveFlight(id) {
     body: JSON.stringify({ flight: id })
   });
   const data = await res.json();
-  alert(data._id ? 'Reserva creada' : data.message || 'Error');
+  if (data._id) {
+    Swal.fire('Éxito', 'Reserva creada', 'success');
+  } else {
+    Swal.fire('Error', data.message || 'Error', 'error');
+  }
 }
 
 loadMyFlights();
