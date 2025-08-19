@@ -3,26 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <title>Registro</title>
+  <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="styles.css">
 </head>
-<body>
-  <header class="navbar">
-    <div class="logo">Agencia</div>
-    <nav>
-      <a href="index.html">Inicio</a>
-      <a href="register.html">Registro</a>
-      <a href="login.html">Iniciar Sesión</a>
-      <a href="flights.html">Vuelos</a>
-      <a href="reservations.html">Mis Reservas</a>
+<body class="bg-gray-50 font-sans text-gray-800">
+  <header class="bg-gradient-to-r from-purple-600 to-pink-500 p-4 flex items-center justify-between shadow-md">
+    <div class="text-white text-xl font-bold">Agencia</div>
+    <nav class="space-x-6">
+      <a href="index.html" class="text-white hover:underline">Inicio</a>
+      <a href="register.html" class="text-white hover:underline">Registro</a>
+      <a href="login.html" class="text-white hover:underline">Iniciar Sesión</a>
+      <a href="flights.html" class="text-white hover:underline">Vuelos</a>
+      <a href="reservations.html" class="text-white hover:underline">Mis Reservas</a>
     </nav>
   </header>
-  <div class="container">
-    <h2>Registro</h2>
-    <form id="registerForm">
-      <input type="text" id="name" placeholder="Nombre" required>
-      <input type="email" id="email" placeholder="Email" required>
-      <input type="password" id="password" placeholder="Contraseña" required>
-      <button type="submit">Registrar</button>
+  <div class="max-w-md mx-auto mt-10 bg-white p-6 rounded-lg shadow fade-in">
+    <h2 class="text-2xl font-bold mb-6 text-center">Registro</h2>
+    <form id="registerForm" class="space-y-4">
+      <input type="text" id="name" placeholder="Nombre" required class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+      <input type="email" id="email" placeholder="Email" required class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+      <input type="password" id="password" placeholder="Contraseña" required class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+      <button type="submit" class="w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 rounded-lg transition transform hover:scale-105">Registrar</button>
     </form>
   </div>
   <script src="js/auth.js"></script>
