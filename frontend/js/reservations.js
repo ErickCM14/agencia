@@ -23,6 +23,7 @@ async function loadAllReservations() {
   reservations.forEach(r => {
     const li = document.createElement('li');
     li.className = 'bg-white p-4 rounded-lg shadow hover:shadow-md transition';
+
     li.textContent = `${r.flight.origin} -> ${r.flight.destination} (${new Date(r.flight.date).toLocaleString()}) - ${r.status}`;
     list.appendChild(li);
   });
