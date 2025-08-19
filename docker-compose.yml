@@ -1,0 +1,36 @@
+version: '3.8'
+services:
+  mongo:
+    image: mongo:6
+    ports:
+      - '27017:27017'
+    volumes:
+      - mongo-data:/data/db
+  users:
+    build: ./backend/users-service
+    ports:
+      - '3001:3001'
+    env_file: ./backend/users-service/.env.example
+    depends_on:
+      - mongo
+  flights:
+    build: ./backend/flights-service
+    ports:
+      - '3002:3002'
+    env_file: ./backend/flights-service/.env.example
+    depends_on:
+      - mongo
+  reservations:
+    build: ./backend/reservations-service
+    ports:
+      - '3003:3003'
+    env_file: ./backend/reservations-service/.env.example
+    depends_on:
+      - mongo
+  payments:
+    build: ./backend/payments-service
+    ports:
+      - '3004:3004'
+    env_file: ./backend/payments-service/.env.example
+volumes:
+  mongo-data:
