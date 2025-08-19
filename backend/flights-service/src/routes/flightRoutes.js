@@ -26,6 +26,14 @@ router.get('/mine', auth, getUserFlights);
 
 /**
  * @swagger
+ * /api/flights/mine:
+ *   get:
+ *     summary: List flights for user
+ */
+router.get('/mine', auth, getUserFlights);
+
+/**
+ * @swagger
  * /api/flights:
  *   post:
  *     summary: Create flight
