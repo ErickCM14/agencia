@@ -1,13 +1,6 @@
 const express = require('express');
 const { body } = require('express-validator');
-const {
-  getFlights,
-  getFlight,
-  createFlight,
-  updateFlight,
-  deleteFlight,
-  seedFlights,
-} = require('../controllers/flightController');
+const { getFlights, createFlight, getUserFlights } = require('../controllers/flightController');
 const auth = require('../middleware/auth');
 const router = express.Router();
 
@@ -22,6 +15,14 @@ router.get('/', getFlights);
 router.post('/seed', auth, seedFlights);
 
 router.get('/:id', getFlight);
+
+/**
+ * @swagger
+ * /api/flights/mine:
+ *   get:
+ *     summary: List flights for user
+ */
+router.get('/mine', auth, getUserFlights);
 
 /**
  * @swagger

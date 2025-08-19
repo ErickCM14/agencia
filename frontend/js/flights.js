@@ -1,5 +1,6 @@
 const flightsApi = 'http://localhost:3002/api/flights';
 const reservationsApi = 'http://localhost:3003/api/reservations';
+const myFlightsApi = flightsApi + '/mine';
 
 async function loadFlights() {
   const res = await fetch(flightsApi);
@@ -18,6 +19,20 @@ async function loadFlights() {
   });
 }
 
+async function loadMyFlights() {
+  const token = localStorage.getItem('token');
+  if (!token) return;
+  const res = await fetch(myFlightsApi, { headers: { 'Authorization': `Bearer ${token}` } });
+  const flights = await res.json();
+  const list = document.getElementById('myFlightsList');
+  flights.forEach(f => {
+    const li = document.createElement('li');
+    li.className = 'bg-white p-4 rounded-lg shadow hover:shadow-md transition';
+    li.textContent = `${f.origin} -> ${f.destination} (${new Date(f.date).toLocaleString()}) $${f.price}`;
+    list.appendChild(li);
+  });
+}
+
 async function reserveFlight(id) {
   const token = localStorage.getItem('token');
   const res = await fetch(reservationsApi, {
@@ -29,28 +44,5 @@ async function reserveFlight(id) {
   alert(data._id ? 'Reserva creada' : data.message || 'Error');
 }
 
-document.getElementById('flightForm')?.addEventListener('submit', async (e) => {
-  e.preventDefault();
-  const token = localStorage.getItem('token');
-  const res = await fetch(flightsApi, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}`
-    },
-    body: JSON.stringify({
-      origin: document.getElementById('origin').value,
-      destination: document.getElementById('destination').value,
-      date: document.getElementById('date').value,
-      price: Number(document.getElementById('price').value)
-    })
-  });
-  const data = await res.json();
-  alert(data._id ? 'Vuelo creado' : data.message || 'Error');
-  if (data._id) {
-    document.getElementById('flightsList').innerHTML = '';
-    loadFlights();
-  }
-});
-
+loadMyFlights();
 loadFlights();
