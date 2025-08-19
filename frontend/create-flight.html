@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Agencia de Vuelos</title>
+  <title>Crear Vuelo</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="styles.css">
 </head>
@@ -18,9 +18,16 @@
       <a href="create-flight.html" class="text-white hover:underline">Crear Vuelo</a>
     </nav>
   </header>
-  <section class="bg-gradient-to-br from-purple-600 to-pink-500 text-white text-center py-32">
-    <h1 class="text-4xl font-bold mb-6 fade-in">Agencia de Vuelos</h1>
-    <a class="bg-pink-500 hover:bg-pink-400 px-6 py-3 rounded-full font-semibold shadow-lg transition transform hover:scale-105" href="flights.html">Buscar Vuelos</a>
-  </section>
+  <div class="max-w-md mx-auto mt-10 p-6 bg-white rounded-lg shadow fade-in">
+    <h2 class="text-2xl font-bold mb-6 text-center">Crear Vuelo</h2>
+    <form id="createFlightForm" class="space-y-4">
+      <input id="origin" type="text" placeholder="Origen" class="w-full border rounded p-2" required>
+      <input id="destination" type="text" placeholder="Destino" class="w-full border rounded p-2" required>
+      <input id="date" type="datetime-local" class="w-full border rounded p-2" required>
+      <input id="price" type="number" placeholder="Precio" class="w-full border rounded p-2" required>
+      <button type="submit" class="w-full bg-purple-600 hover:bg-purple-700 text-white py-2 rounded transition transform hover:scale-105">Crear</button>
+    </form>
+  </div>
+  <script src="js/createFlight.js"></script>
 </body>
 </html>
