@@ -35,6 +35,24 @@ exports.getFlight = async (req, res, next) => {
   }
 };
 
+exports.getUserFlights = async (req, res, next) => {
+  try {
+    const flights = await Flight.find({ user: req.user.id });
+    res.json(flights);
+  } catch (err) {
+    next(err);
+  }
+};
+
+exports.getUserFlights = async (req, res, next) => {
+  try {
+    const flights = await Flight.find({ user: req.user.id });
+    res.json(flights);
+  } catch (err) {
+    next(err);
+  }
+};
+
 exports.createFlight = async (req, res, next) => {
   try {
     const errors = validationResult(req);
