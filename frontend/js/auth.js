@@ -14,7 +14,7 @@ document.getElementById('registerForm')?.addEventListener('submit', async (e) =>
     })
   });
   const data = await res.json();
-  alert(data.message || 'Registrado');
+  Swal.fire('Registro', data.message || 'Registrado', data.error ? 'error' : 'success');
 });
 
 document.getElementById('loginForm')?.addEventListener('submit', async (e) => {
@@ -32,6 +32,6 @@ document.getElementById('loginForm')?.addEventListener('submit', async (e) => {
     localStorage.setItem('token', data.token);
     window.location.href = 'flights.html';
   } else {
-    alert('Credenciales inválidas');
+    Swal.fire('Error', 'Credenciales inválidas', 'error');
   }
 });
