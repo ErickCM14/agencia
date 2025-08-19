@@ -54,3 +54,12 @@ exports.getAllReservations = async (req, res, next) => {
     next(err);
   }
 };
+
+exports.getAllReservations = async (req, res, next) => {
+  try {
+    const reservations = await Reservation.find().populate('flight');
+    res.json(reservations);
+  } catch (err) {
+    next(err);
+  }
+};
