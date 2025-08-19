@@ -3,15 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <title>Agencia de Vuelos</title>
+  <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="styles.css">
 </head>
-<body>
-  <h1>Agencia de Vuelos</h1>
-  <nav>
-    <a href="register.html">Registro</a>
-    <a href="login.html">Iniciar Sesión</a>
-    <a href="flights.html">Vuelos</a>
-    <a href="reservations.html">Mis Reservas</a>
-  </nav>
+<body class="bg-gray-50 font-sans text-gray-800">
+  <header class="bg-gradient-to-r from-purple-600 to-pink-500 p-4 flex items-center justify-between shadow-md">
+    <div class="text-white text-xl font-bold">Agencia</div>
+    <nav class="space-x-6">
+      <a href="index.html" class="text-white hover:underline">Inicio</a>
+      <a id="nav-register" href="register.html" class="text-white hover:underline">Registro</a>
+      <a id="nav-login" href="login.html" class="text-white hover:underline">Iniciar Sesión</a>
+      <a href="flights.html" class="text-white hover:underline">Vuelos</a>
+      <a href="reservations.html" class="text-white hover:underline">Mis Reservas</a>
+      <a href="create-flight.html" class="text-white hover:underline">Crear Vuelo</a>
+      <a id="nav-logout" href="#" class="text-white hover:underline">Cerrar Sesión</a>
+    </nav>
+  </header>
+  <section class="bg-gradient-to-br from-purple-600 to-pink-500 text-white text-center py-32">
+    <h1 class="text-4xl font-bold mb-6 fade-in">Agencia de Vuelos</h1>
+    <a class="bg-pink-500 hover:bg-pink-400 px-6 py-3 rounded-full font-semibold shadow-lg transition transform hover:scale-105" href="flights.html">Buscar Vuelos</a>
+  </section>
 </body>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="js/navbar.js"></script>
 </html>

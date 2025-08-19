@@ -1,6 +1,6 @@
 const express = require('express');
 const { body } = require('express-validator');
-const { createReservation, getReservations } = require('../controllers/reservationController');
+const { createReservation, getReservations, getAllReservations } = require('../controllers/reservationController');
 const auth = require('../middleware/auth');
 const router = express.Router();
 
@@ -11,6 +11,14 @@ const router = express.Router();
  *     summary: List reservations for user
  */
 router.get('/', auth, getReservations);
+
+/**
+ * @swagger
+ * /api/reservations/all:
+ *   get:
+ *     summary: List all reservations
+ */
+router.get('/all', getAllReservations);
 
 /**
  * @swagger
