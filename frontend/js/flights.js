@@ -29,4 +29,28 @@ async function reserveFlight(id) {
   alert(data._id ? 'Reserva creada' : data.message || 'Error');
 }
 
+document.getElementById('flightForm')?.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const token = localStorage.getItem('token');
+  const res = await fetch(flightsApi, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    },
+    body: JSON.stringify({
+      origin: document.getElementById('origin').value,
+      destination: document.getElementById('destination').value,
+      date: document.getElementById('date').value,
+      price: Number(document.getElementById('price').value)
+    })
+  });
+  const data = await res.json();
+  alert(data._id ? 'Vuelo creado' : data.message || 'Error');
+  if (data._id) {
+    document.getElementById('flightsList').innerHTML = '';
+    loadFlights();
+  }
+});
+
 loadFlights();
