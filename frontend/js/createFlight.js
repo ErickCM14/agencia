@@ -15,5 +15,9 @@ document.getElementById('createFlightForm').addEventListener('submit', async e =
     body: JSON.stringify(body)
   });
   const data = await res.json();
-  alert(data._id ? 'Vuelo creado' : data.message || 'Error');
+  if (data._id) {
+    Swal.fire('Éxito', 'Vuelo creado', 'success');
+  } else {
+    Swal.fire('Error', data.message || 'Error', 'error');
+  }
 });
