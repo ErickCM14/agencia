@@ -13,7 +13,7 @@ async function loadFlights() {
     const btn = document.createElement('button');
     btn.textContent = 'Reservar';
     btn.className = 'bg-purple-600 hover:bg-purple-700 text-white px-3 py-1 rounded-md transition transform hover:scale-105';
-    btn.onclick = () => reserveFlight(f._id);
+    btn.onclick = () => reserveFlight(f.id || f._id);
     li.appendChild(btn);
     list.appendChild(li);
   });
@@ -41,7 +41,7 @@ async function reserveFlight(id) {
     body: JSON.stringify({ flight: id })
   });
   const data = await res.json();
-  alert(data._id ? 'Reserva creada' : data.message || 'Error');
+  alert(data.id ? 'Reserva creada' : data.message || 'Error');
 }
 
 loadMyFlights();
