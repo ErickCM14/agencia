@@ -1,5 +1,3 @@
-const Reservation = require('../models/Reservation');
-require('../models/Flight');
 const { validationResult } = require('express-validator');
 const createReservationUseCase = require('../use-cases/createReservation');
 const listReservationsUseCase = require('../use-cases/listReservations');
@@ -22,42 +20,6 @@ exports.createReservation = async (req, res, next) => {
 exports.getReservations = async (req, res, next) => {
   try {
     const reservations = await listReservationsUseCase(req.user.id);
-    res.json(reservations);
-  } catch (err) {
-    next(err);
-  }
-};
-
-exports.getAllReservations = async (req, res, next) => {
-  try {
-    const reservations = await Reservation.find().populate('flight');
-    res.json(reservations);
-  } catch (err) {
-    next(err);
-  }
-};
-
-exports.getAllReservations = async (req, res, next) => {
-  try {
-    const reservations = await Reservation.find().populate('flight');
-    res.json(reservations);
-  } catch (err) {
-    next(err);
-  }
-};
-
-exports.getAllReservations = async (req, res, next) => {
-  try {
-    const reservations = await Reservation.find().populate('flight');
-    res.json(reservations);
-  } catch (err) {
-    next(err);
-  }
-};
-
-exports.getAllReservations = async (req, res, next) => {
-  try {
-    const reservations = await Reservation.find().populate('flight');
     res.json(reservations);
   } catch (err) {
     next(err);

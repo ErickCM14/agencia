@@ -6,8 +6,7 @@ const {
   createFlight,
   updateFlight,
   deleteFlight,
-  getUserFlights,
-  seedFlights: seedFlightsController,
+  seedFlights,
 } = require('../controllers/flightController');
 const auth = require('../middleware/auth');
 const router = express.Router();
@@ -20,15 +19,7 @@ const router = express.Router();
  */
 router.get('/', getFlights);
 
-router.post('/seed', auth, seedFlightsController);
-
-/**
- * @swagger
- * /api/flights/mine:
- *   get:
- *     summary: List flights for user
- */
-router.get('/mine', auth, getUserFlights);
+router.post('/seed', auth, seedFlights);
 
 router.get('/:id', getFlight);
 
