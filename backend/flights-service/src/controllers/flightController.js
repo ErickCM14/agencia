@@ -5,6 +5,7 @@ const getFlightUseCase = require('../use-cases/getFlight');
 const updateFlightUseCase = require('../use-cases/updateFlight');
 const deleteFlightUseCase = require('../use-cases/deleteFlight');
 const seedFlightsUseCase = require('../use-cases/seedFlights');
+const Flight = require('../models/Flight');
 
 exports.getFlights = async (req, res, next) => {
   try {
@@ -24,10 +25,11 @@ exports.getUserFlights = async (req, res, next) => {
   }
 };
 
-exports.getUserFlights = async (req, res, next) => {
+exports.getFlight = async (req, res, next) => {
   try {
-    const flights = await Flight.find({ user: req.user.id });
-    res.json(flights);
+    const flight = await getFlightUseCase(req.params.id);
+    if (!flight) return res.sendStatus(404);
+    res.json(flight);
   } catch (err) {
     next(err);
   }
@@ -37,7 +39,7 @@ exports.createFlight = async (req, res, next) => {
   try {
     const errors = validationResult(req);
     if (!errors.isEmpty()) return res.status(400).json({ errors: errors.array() });
-    const flight = await Flight.create({ ...req.body, user: req.user.id });
+    const flight = await createFlightUseCase({ ...req.body, user: req.user.id });
     res.status(201).json(flight);
   } catch (err) {
     next(err);
