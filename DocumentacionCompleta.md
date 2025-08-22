@@ -49,6 +49,20 @@ flowchart TD
     B -- Sí --> D[Guardar usuario]
     D --> E[Confirmar registro]
 ```
+- **Diagrama de Secuencia:**
+```mermaid
+sequenceDiagram
+    participant V as Visitante
+    participant S as Sistema
+    V->>S: Enviar datos de registro
+    S->>S: Verificar correo
+    alt Correo existente
+        S-->>V: Error de registro
+    else
+        S->>S: Guardar usuario
+        S-->>V: Confirmación
+    end
+```
 
 ### 3.2 Iniciar Sesión
 - **Descripción:** Autentica a un usuario registrado.
@@ -70,6 +84,20 @@ flowchart TD
     B -- Sí --> D[Generar JWT]
     D --> E[Responder con éxito]
 ```
+- **Diagrama de Secuencia:**
+```mermaid
+sequenceDiagram
+    participant U as Usuario
+    participant S as Sistema
+    U->>S: Enviar credenciales
+    S->>S: Validar credenciales
+    alt Inválidas
+        S-->>U: Mostrar error
+    else
+        S->>S: Generar JWT
+        S-->>U: Token y datos
+    end
+```
 
 ### 3.3 Agregar Vuelo (Admin)
 - **Descripción:** Crea un nuevo vuelo.
@@ -90,6 +118,20 @@ flowchart TD
     B -- No --> C[Mostrar error]
     B -- Sí --> D[Guardar vuelo]
     D --> E[Confirmar creación]
+```
+- **Diagrama de Secuencia:**
+```mermaid
+sequenceDiagram
+    participant A as Admin
+    participant S as Sistema
+    A->>S: Enviar datos del vuelo
+    S->>S: Validar datos
+    alt Datos inválidos
+        S-->>A: Mostrar error
+    else
+        S->>S: Guardar vuelo
+        S-->>A: Confirmación
+    end
 ```
 
 ### 3.4 Editar Vuelo (Admin)
@@ -117,6 +159,22 @@ flowchart TD
     F -- Sí --> H[Guardar cambios]
     H --> I[Confirmar]
 ```
+- **Diagrama de Secuencia:**
+```mermaid
+sequenceDiagram
+    participant A as Admin
+    participant S as Sistema
+    A->>S: Solicitar datos del vuelo
+    S-->>A: Datos actuales
+    A->>S: Enviar actualizaciones
+    S->>S: Validar datos
+    alt Datos inválidos
+        S-->>A: Mostrar error
+    else
+        S->>S: Guardar cambios
+        S-->>A: Confirmación
+    end
+```
 
 ### 3.5 Eliminar Vuelo (Admin)
 - **Descripción:** Elimina un vuelo del sistema.
@@ -138,6 +196,20 @@ flowchart TD
     B -- No --> D[Eliminar vuelo]
     D --> E[Confirmar]
 ```
+- **Diagrama de Secuencia:**
+```mermaid
+sequenceDiagram
+    participant A as Admin
+    participant S as Sistema
+    A->>S: Solicitar eliminación
+    S->>S: Verificar reservas activas
+    alt Tiene reservas
+        S-->>A: Rechazar eliminación
+    else
+        S->>S: Eliminar vuelo
+        S-->>A: Confirmar
+    end
+```
 
 ### 3.6 Visualizar Vuelos
 - **Descripción:** Muestra vuelos disponibles.
@@ -156,6 +228,15 @@ flowchart TD
     A[Solicitar vuelos] --> B[Consultar base de datos]
     B --> C[Filtrar disponibles]
     C --> D[Mostrar lista]
+```
+- **Diagrama de Secuencia:**
+```mermaid
+sequenceDiagram
+    participant U as Usuario
+    participant S as Sistema
+    U->>S: Solicitar lista de vuelos
+    S->>S: Buscar vuelos disponibles
+    S-->>U: Lista de vuelos
 ```
 
 ### 3.7 Agendar Vuelo
@@ -179,6 +260,20 @@ flowchart TD
     B -- Sí --> D[Registrar reserva]
     D --> E[Confirmar al usuario]
 ```
+- **Diagrama de Secuencia:**
+```mermaid
+sequenceDiagram
+    participant U as Usuario
+    participant S as Sistema
+    U->>S: Solicitar reserva
+    S->>S: Verificar cupos
+    alt Sin cupos
+        S-->>U: Notificar indisponibilidad
+    else
+        S->>S: Registrar reserva
+        S-->>U: Confirmación
+    end
+```
 
 ### 3.8 Ver Vuelos Agendados
 - **Descripción:** Consulta vuelos agendados y próximos.
@@ -198,6 +293,16 @@ flowchart TD
     A[Solicitar mis vuelos] --> B[Buscar reservas]
     B --> C[Ordenar y filtrar]
     C --> D[Responder al usuario]
+```
+- **Diagrama de Secuencia:**
+```mermaid
+sequenceDiagram
+    participant U as Usuario
+    participant S as Sistema
+    U->>S: Solicitar vuelos agendados
+    S->>S: Consultar reservas
+    S->>S: Ordenar y filtrar
+    S-->>U: Lista de vuelos
 ```
 
 ## 4. Diagramas
